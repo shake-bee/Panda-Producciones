@@ -1193,6 +1193,178 @@
   );
   z-index: 1;
 }
+
+
+/* Galerías de fotografías */
+.service-gallery {
+  position: relative;
+  width: 100%;
+  height: 190px;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-bottom: 18px;
+}
+
+.gallery-track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  cursor: grab;
+  user-select: none;
+}
+
+.gallery-track::-webkit-scrollbar {
+  display: none;
+}
+
+.gallery-track:active {
+  cursor: grabbing;
+}
+
+.gallery-track img {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  scroll-snap-align: start;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+.gallery-arrow {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.72);
+  color: #fff;
+  font-size: 17px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.service-gallery:hover .gallery-arrow,
+.service-gallery:focus-within .gallery-arrow {
+  opacity: 1;
+}
+
+.gallery-arrow.prev {
+  left: 8px;
+}
+
+.gallery-arrow.next {
+  right: 8px;
+}
+
+/* Tarjeta que abre el formulario */
+.service-custom {
+  cursor: pointer;
+}
+
+.service-custom:focus-visible {
+  outline: 2px solid #f9b81c;
+  outline-offset: 4px;
+}
+
+/* Ventana del formulario */
+.service-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.78);
+  align-items: center;
+  justify-content: center;
+}
+
+.service-modal.is-open {
+  display: flex;
+}
+
+.service-modal-content {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 30px;
+  border: 1px solid rgba(249, 184, 28, 0.4);
+  border-radius: 14px;
+  background: #111;
+  color: #fff;
+}
+
+.service-modal-content h2 {
+  margin-top: 0;
+}
+
+.service-modal-content label {
+  display: block;
+  margin: 15px 0 7px;
+}
+
+.service-modal-content input,
+.service-modal-content textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #444;
+  border-radius: 7px;
+  background: #1b1b1b;
+  color: #fff;
+  font: inherit;
+}
+
+.service-modal-content textarea {
+  resize: vertical;
+}
+
+.service-modal-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.service-form-submit {
+  width: 100%;
+  margin-top: 20px;
+  padding: 13px;
+  border: none;
+  border-radius: 7px;
+  background: #f9b81c;
+  color: #111;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .service-gallery {
+    height: 180px;
+  }
+
+  .gallery-arrow {
+    opacity: 1;
+  }
+
+  .service-modal-content {
+    padding: 25px 20px;
+  }
+}
+
 </style>
 
 <style id="panda-services-bg">
@@ -1321,54 +1493,149 @@
   </section>
 
   <!-- SERVICES -->
-  <section class="block reveal" id="services">
-    <div class="wrap">
-      <div class="block-head">
-        <div class="eyebrow">Qué filmamos?</div>
-        <h2>Más de 5 formatos.<br>Tu eliges!</h2>
-        <p>Cada evento es único y los detalles importan.<br> Selecciona el tipo de formato de tu interés<br>y cotiza con nosotros!</p>
+ 
+<section class="block reveal" id="services">
+  <div class="wrap">
+    <div class="block-head">
+      <div class="eyebrow">Qué filmamos?</div>
+      <h2>Más de 5 formatos.<br>Tu eliges!</h2>
+      <p>Cada evento es único y los detalles importan.<br>
+        Selecciona el tipo de formato de tu interés<br>
+        y cotiza con nosotros!
+      </p>
+    </div>
+
+    <div class="services-grid">
+
+      <!-- 01 QUINCE AÑOS -->
+      <div class="service-card">
+        <span class="tag">01</span>
+        <div class="service-gallery">
+          <button class="gallery-arrow prev" aria-label="Foto anterior">&#10094;</button>
+          <div class="gallery-track">
+            <img src="images/quince-1.jpg" alt="Decoración de quince años">
+            <img src="images/quince-2.jpg" alt="Celebración de quince años">
+            <img src="images/quince-3.jpg" alt="Vals de quince años">
+          </div>
+          <button class="gallery-arrow next" aria-label="Foto siguiente">&#10095;</button>
+        </div>
+        <h3>Quince Años</h3>
+        <p>La entrada, el vals, las sorpresas: cada segundo del día más importante merece verse en pantalla grande.</p>
       </div>
 
-      <div class="services-grid">
-        <div class="service-card">
-          <span class="tag">01</span>
-          <div class="service-icon"><svg viewBox="0 0 48 48" fill="none" stroke="#f9b81c" stroke-width="1.6"><path d="M24 6l4.5 9.2 10.1 1.5-7.3 7.1 1.7 10.1L24 29l-9 4.9 1.7-10.1-7.3-7.1 10.1-1.5z"/></svg></div>
-          <h3>Quince Años</h3>
-          <p>La entrada, el vals, las sorpresas: cada segundo del día más importante merece verse en pantalla grande.</p>
+      <!-- 02 BODAS -->
+      <div class="service-card">
+        <span class="tag">02</span>
+        <div class="service-gallery">
+          <button class="gallery-arrow prev" aria-label="Foto anterior">&#10094;</button>
+          <div class="gallery-track">
+            <img src="images/boda-1.jpg" alt="Ceremonia de boda">
+            <img src="images/boda-2.jpg" alt="Celebración de boda">
+            <img src="images/boda-3.jpg" alt="Novios en su celebración">
+          </div>
+          <button class="gallery-arrow next" aria-label="Foto siguiente">&#10095;</button>
         </div>
-        <div class="service-card">
-          <span class="tag">02</span>
-          <div class="service-icon"><svg viewBox="0 0 48 48" fill="none" stroke="#f9b81c" stroke-width="1.6"><circle cx="17" cy="27" r="8"/><circle cx="31" cy="27" r="8"/></svg></div>
-          <h3>Bodas</h3>
-          <p>Del "sí, acepto" hasta la última canción de la fiesta. Filmamos la boda completa, sin perder ni un detalle.</p>
-        </div>
-        <div class="service-card">
-          <span class="tag">03</span>
-          <div class="service-icon"><svg viewBox="0 0 48 48" fill="none" stroke="#f9b81c" stroke-width="1.6"><rect x="12" y="14" width="20" height="26" rx="1"/><path d="M18 8v6M24 6v8M30 8v6"/></svg></div>
-          <h3>Fiestas Infantiles</h3>
-          <p>Piñatas, risas y sorpresas. Un recuerdo en video para que ese cumpleaños no se olvide nunca.</p>
-        </div>
-        <div class="service-card">
-          <span class="tag">04</span>
-          <div class="service-icon"><svg viewBox="0 0 48 48" fill="none" stroke="#f9b81c" stroke-width="1.6"><path d="M4 18L24 8L44 18L24 28L4 18Z"/><path d="M12 22V32C19 37 29 37 36 32V22"/><path d="M44 18V32"/></svg></div>
-          <h3>Promociones</h3>
-          <p>Celebramos tu graduación y los momentos inolvidables de tu promoción escolar con una producción de video profesional.</p>
-        </div>
-        <div class="service-card">
-          <span class="tag">05</span>
-          <div class="service-icon"><svg viewBox="0 0 48 48" fill="none" stroke="#f9b81c" stroke-width="1.6"><path d="M6 20v8h6l12 8V12l-12 8z"/><path d="M30 18c2 2 2 10 0 12"/></svg></div>
-          <h3>Publicidad</h3>
-          <p>Creamos contenido para redes sociales, diseño gráfico y Tiktok LIVE con estrategias de marketing digital para conectar con tu audiencia.</p>
-        </div>
-        <div class="service-card">
-          <span class="tag">+</span>
-          <div class="service-icon"><svg viewBox="0 0 48 48" fill="none" stroke="#f9b81c" stroke-width="1.6"><path d="M8 24h32M24 8v32"/></svg></div>
-          <h3>¿Tienes algo distinto en mente?</h3>
-          <p>Si tu formato no está en la lista, cuéntanos igual. Adaptamos los equipos y el personal a lo que necesites.</p>
-        </div>
+        <h3>Bodas</h3>
+        <p>Del "sí, acepto" hasta la última canción de la fiesta. Filmamos la boda completa, sin perder ni un detalle.</p>
       </div>
+
+      <!-- 03 FIESTAS INFANTILES -->
+      <div class="service-card">
+        <span class="tag">03</span>
+        <div class="service-gallery">
+          <button class="gallery-arrow prev" aria-label="Foto anterior">&#10094;</button>
+          <div class="gallery-track">
+            <img src="images/infantil-1.jpg" alt="Decoración de fiesta infantil">
+            <img src="images/infantil-2.jpg" alt="Cumpleaños infantil">
+            <img src="images/infantil-3.jpg" alt="Celebración infantil">
+          </div>
+          <button class="gallery-arrow next" aria-label="Foto siguiente">&#10095;</button>
+        </div>
+        <h3>Fiestas Infantiles</h3>
+        <p>Piñatas, risas y sorpresas. Un recuerdo en video para que ese cumpleaños no se olvide nunca.</p>
+      </div>
+
+      <!-- 04 PROMOCIONES -->
+      <div class="service-card">
+        <span class="tag">04</span>
+        <div class="service-gallery">
+          <button class="gallery-arrow prev" aria-label="Foto anterior">&#10094;</button>
+          <div class="gallery-track">
+            <img src="images/promocion-1.jpg" alt="Promoción escolar">
+            <img src="images/promocion-2.jpg" alt="Graduación escolar">
+            <img src="images/promocion-3.jpg" alt="Sesión fotográfica de promoción">
+          </div>
+          <button class="gallery-arrow next" aria-label="Foto siguiente">&#10095;</button>
+        </div>
+        <h3>Promociones</h3>
+        <p>Celebramos tu graduación y los momentos inolvidables de tu promoción escolar con una producción de video profesional.</p>
+      </div>
+
+      <!-- 05 PUBLICIDAD -->
+      <div class="service-card">
+        <span class="tag">05</span>
+        <div class="service-gallery">
+          <button class="gallery-arrow prev" aria-label="Foto anterior">&#10094;</button>
+          <div class="gallery-track">
+            <img src="images/publicidad-1.jpg" alt="Producción de publicidad">
+            <img src="images/publicidad-2.jpg" alt="Grabación de contenido">
+            <img src="images/publicidad-3.jpg" alt="Producción para redes sociales">
+          </div>
+          <button class="gallery-arrow next" aria-label="Foto siguiente">&#10095;</button>
+        </div>
+        <h3>Publicidad</h3>
+        <p>Creamos contenido para redes sociales, diseño gráfico y TikTok LIVE con estrategias de marketing digital para conectar con tu audiencia.</p>
+      </div>
+
+      <!-- + SERVICIO PERSONALIZADO, SIN FOTOS -->
+      <div class="service-card service-custom"
+           role="button" tabindex="0"
+           aria-label="Consultar por otro tipo de evento">
+        <span class="tag">+</span>
+        <div class="service-icon">
+          <svg viewBox="0 0 48 48" fill="none"
+               stroke="#f9b81c" stroke-width="1.6">
+            <path d="M8 24h32M24 8v32"/>
+          </svg>
+        </div>
+        <h3>¿Tienes algo distinto en mente?</h3>
+        <p>Si tu formato no está en la lista, cuéntanos igual. Adaptamos los equipos y el personal a lo que necesites.</p>
+      </div>
+
     </div>
-  </section>
+  </div>
+</section>
+
+<!-- FORMULARIO INDEPENDIENTE -->
+<div class="service-modal" id="serviceModal" aria-hidden="true">
+  <div class="service-modal-content" role="dialog"
+       aria-modal="true" aria-labelledby="serviceModalTitle">
+    <button type="button" class="service-modal-close"
+            aria-label="Cerrar formulario">&times;</button>
+
+    <h2 id="serviceModalTitle">Cuéntanos tu idea</h2>
+    <p>Describe el evento o servicio que necesitas.</p>
+
+    <form id="customServiceForm">
+      <label for="clientName">Tu nombre</label>
+      <input id="clientName" name="nombre" type="text"
+             placeholder="Escribe tu nombre" required>
+
+      <label for="clientContact">Teléfono de contacto</label>
+      <input id="clientContact" name="contacto" type="tel"
+             placeholder="Tu número de teléfono" required>
+
+      <label for="eventDetails">¿Qué evento o servicio necesitas?</label>
+      <textarea id="eventDetails" name="detalle" rows="4"
+                placeholder="Cuéntanos qué tienes en mente..."
+                required></textarea>
+
+      <button type="submit" class="service-form-submit">
+        Enviar consulta por WhatsApp
+      </button>
+    </form>
+  </div>
+</div>
 
   <!-- PROCESS -->
   <section class="block reveal" id="process" style="background:var(--black-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
@@ -2221,6 +2488,123 @@
 
 })();
 </script>
+
+
+/* Controles de los carruseles */
+document.querySelectorAll(".service-gallery").forEach(gallery => {
+  const track = gallery.querySelector(".gallery-track");
+  const prev = gallery.querySelector(".gallery-arrow.prev");
+  const next = gallery.querySelector(".gallery-arrow.next");
+
+  prev.addEventListener("click", event => {
+    event.stopPropagation();
+    track.scrollBy({
+      left: -track.clientWidth,
+      behavior: "smooth"
+    });
+  });
+
+  next.addEventListener("click", event => {
+    event.stopPropagation();
+    track.scrollBy({
+      left: track.clientWidth,
+      behavior: "smooth"
+    });
+  });
+
+  let dragging = false;
+  let startX = 0;
+  let startScroll = 0;
+
+  track.addEventListener("pointerdown", event => {
+    if (event.pointerType === "touch") return;
+
+    dragging = true;
+    startX = event.clientX;
+    startScroll = track.scrollLeft;
+    track.setPointerCapture(event.pointerId);
+  });
+
+  track.addEventListener("pointermove", event => {
+    if (!dragging) return;
+
+    track.scrollLeft =
+      startScroll - (event.clientX - startX);
+  });
+
+  function stopDragging() {
+    dragging = false;
+  }
+
+  track.addEventListener("pointerup", stopDragging);
+  track.addEventListener("pointercancel", stopDragging);
+  track.addEventListener("lostpointercapture", stopDragging);
+});
+
+/* Abrir y cerrar el formulario */
+const customCard = document.querySelector(".service-custom");
+const serviceModal = document.getElementById("serviceModal");
+const closeModal = document.querySelector(".service-modal-close");
+
+function openServiceModal() {
+  serviceModal.classList.add("is-open");
+  serviceModal.setAttribute("aria-hidden", "false");
+  document.getElementById("clientName").focus();
+}
+
+function hideServiceModal() {
+  serviceModal.classList.remove("is-open");
+  serviceModal.setAttribute("aria-hidden", "true");
+}
+
+customCard.addEventListener("click", openServiceModal);
+
+customCard.addEventListener("keydown", event => {
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    openServiceModal();
+  }
+});
+
+closeModal.addEventListener("click", hideServiceModal);
+
+serviceModal.addEventListener("click", event => {
+  if (event.target === serviceModal) {
+    hideServiceModal();
+  }
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") {
+    hideServiceModal();
+  }
+});
+
+/* Enviar la consulta a WhatsApp */
+document.getElementById("customServiceForm")
+  .addEventListener("submit", event => {
+    event.preventDefault();
+
+    const whatsappNumber = "51966657314";
+    const nombre = document.getElementById("clientName").value.trim();
+    const contacto = document.getElementById("clientContact").value.trim();
+    const detalle = document.getElementById("eventDetails").value.trim();
+
+    if (whatsappNumber === "TU_NUMERO") {
+      alert("Configura tu número de WhatsApp en el código JavaScript.");
+      return;
+    }
+
+    const mensaje =
+      `Hola, soy ${nombre}.\n` +
+      `Mi teléfono: ${contacto}.\n` +
+      `Necesito información sobre: ${detalle}`;
+
+    const url =
+      `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(mensaje)}`;
+
+    window.open(url, "_blank");
+  });
 
 </body>
 </html>
